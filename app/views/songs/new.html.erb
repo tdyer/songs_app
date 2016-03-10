@@ -1,5 +1,16 @@
 <p> Create a New Song</p>
 
+<% if @song.errors.any? %>
+  <div id="error_explanation">
+    <!-- list of all the song errors -->
+    <ul>
+    <% @song.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <!-- form_for will generate a HTML Form   -->
 <!--
 <form class="new_song" id="new_song" action="/songs" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="p0PS1VTwpeF1E/TSZwVLgJ9jgW9Ia/ynHxapI8Q9+lM7sk4MXqweO5Xy96qH6OxecrVQek2JXT6/X58vzZ/etw==" />

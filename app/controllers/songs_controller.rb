@@ -54,13 +54,22 @@ class SongsController < ApplicationController
     # Song.new({title: '1999', artist_name: 'Prince', duration: 240, price: 139})
     @song = Song.new(song_params)
 
-    # Song#save method will generate the SQL INSERT statement
-    # to create a new row in the songs table.
-    if @song.save
-      # Successfully saved a song
-      render json: @song, status: :created, location: songs_url
-    else
-      render json: @song.errors, status: :unprocessable_entity
+    respond_to do |format|
+      # Song#save method will generate the SQL INSERT statement
+      # to create a new row in the songs table.
+      if  @song.save
+        # Successfully saved a song
+        # redirect_to generates a HTTP Redirect to /songs/:id
+        format.html { redirect_to songs_url, notice: 'Song was successfully created'}
+        # render the app/views/show.html.erb, HTTP Status 201
+        format.json { render :show, status: :created, location: @song}
+        format.xml { render :show, status: :created, location: @song}
+        # render json: @song, status: :created, location: songs_url
+      else
+        # Save to DB FAILED
+        format.html {render :new}
+        format.json {render json: @song.errors, status: :unprocessable_entity}
+      end
     end
   end
 
