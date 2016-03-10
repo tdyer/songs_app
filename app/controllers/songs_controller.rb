@@ -73,6 +73,40 @@ class SongsController < ApplicationController
     end
   end
 
+  # GET /songs/1/edit
+  # Generate the HTML Form for updating/editing a Song
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  # This will update a song
+  def update
+    # find the the song to update
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      if @song.update(song_params)
+        format.html {redirect_to @song, notice: "Song was successfully updated"}
+      else
+        # Render the edit.html.erb
+        format.html { render :edit }
+      end
+    end
+
+  end
+
+  def destroy
+    @song  = Song.find(params[:id])
+    # Delete song from the DB
+    @song.destroy
+
+    respond_to do |format|
+      format.html { redirect_to songs_url, notice: "Song was destroyed"}
+      # Don't return anything, just an empty HTTP Response
+      format.json { render head: :no_content}
+    end
+  end
+
   private
 
   # Defines what data a HTTP POST can send to create a song

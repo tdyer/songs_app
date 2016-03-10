@@ -1,0 +1,44 @@
+<p> Update an existing Song</p>
+
+<% if @song.errors.any? %>
+  <div id="error_explanation">
+    <!-- list of all the song errors -->
+    <ul>
+    <% @song.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!-- form_for will generate a HTML Form   -->
+<!--
+<form class="new_song" id="new_song" action="/songs" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="p0PS1VTwpeF1E/TSZwVLgJ9jgW9Ia/ynHxapI8Q9+lM7sk4MXqweO5Xy96qH6OxecrVQek2JXT6/X58vzZ/etw==" />
+
+</form>
+-->
+<%= form_for(@song) do |f| %>
+
+<ol>
+  <li>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </li>
+  <li>
+    <%= f.label :artist_name %>
+    <%= f.text_field :artist_name %>
+  </li>
+  <li>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </li>
+  <li>
+    <%= f.label :duration %>
+    <%= f.text_field :duration %>
+  </li>
+</ol>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+

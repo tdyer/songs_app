@@ -3,16 +3,21 @@ Rails.application.routes.draw do
   # GET /
   root 'songs#index'
 
-  # GET /songs
-  get '/songs', to: 'songs#index'
+  resources :songs
 
-  # GET /songs/new
-  get '/songs/new', to: 'songs#new'
+  # # GET /songs
+  # get '/songs', to: 'songs#index'
 
-  # GET /songs/2
-  get '/songs/:id', to: 'songs#show'
-  # POST /songs
-  post '/songs', to: 'songs#create'
+  # # GET /songs/new
+  # get '/songs/new', to: 'songs#new'
+
+  # # GET /songs/1/edit
+  # get '/songs/:id/edit', to: 'songs#edit'
+
+  # # GET /songs/2
+  # get '/songs/:id', to: 'songs#show'
+  # # POST /songs
+  # post '/songs', to: 'songs#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,6 +1,8 @@
 Show all the songs
 <ul>
 <% @songs.each do |song| %>
-  <li><%=song.title%> was created by <%= song.artist_name%></li>
+  <li><%=song.title%> was created by <%= song.artist_name%>
+  | <%= link_to "Destroy", song, method: :delete, data: { confirm: 'Are you sure?'} %>
+  </li>
 <% end %>
 </ul>
